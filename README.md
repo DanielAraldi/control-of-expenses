@@ -1,2 +1,2 @@
-# expense-system
-Sistemas de despesas.
+# Control of Expenses
+Controle de despesas.
