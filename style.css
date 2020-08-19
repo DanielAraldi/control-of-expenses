@@ -133,6 +133,14 @@ input[type='number'] {
   border-right: 5px solid #c0392b;
 }
 
+.transactions li .data {
+  color: #666;
+  font-size: 12px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
 .delete-btn {
   cursor: pointer;
   background-color: #e74c3c;
@@ -193,7 +201,8 @@ input[type='number'] {
   }
 
   .transactions li {
-    padding: 8px;
+    padding: 8px 8px 20px;
+    
   }
 
   .transactions li.plus {
@@ -202,6 +211,13 @@ input[type='number'] {
 
   .transactions li.minus {
     border-right: 7px solid #c0392b;
+  }
+
+  .transactions li .data {
+    position: absolute;
+    top: 55%;
+    left: 0;
+    right: 0;
   }
 
   .delete-btn {

@@ -19,7 +19,7 @@ const removeTransaction = ID => {
     init()
 }
 
-const addTransactionIntoDOM = ({ amount, name, id }) => {
+const addTransactionIntoDOM = ({ amount, name, data, id }) => {
     const operator = amount < 0 ? '-' : '+'
     const CSSClass = amount < 0 ? 'minus' : 'plus'
     const amountWithoutOperator = Math.abs(amount).toFixed(2) // Retorna qualquer número sem nenhum símbolo.
@@ -27,8 +27,9 @@ const addTransactionIntoDOM = ({ amount, name, id }) => {
 
     li.classList.add(CSSClass)
     li.innerHTML = `
-        ${name} <span>${operator} R$ ${amountWithoutOperator}</span>
+        ${name} <span class="data">${data}</span> <span>${operator} R$ ${amountWithoutOperator}</span>
         <button class="delete-btn" onClick="removeTransaction(${id})">X</button>
+        
     `
     transactionsUl.prepend(li) // Adicionada como primeiro filho (prepend())
 }
@@ -78,11 +79,26 @@ updateLocalStorage = () => {
 // Criando IDs aleatórios
 const generateID = () => Math.round(Math.random() * 10000)
 
+// Data de criação de transação
+const gererateData = () => {
+    const data = new Date()
+
+    const year = data.getFullYear()
+    let mouth = data.getMonth()
+    const day = data.getDate()
+    const hours = data.getHours()
+    const minutes = data.getMinutes()
+    const seconds = data.getSeconds()
+
+    return day + "/" + (mouth + 1) + "/" + year + " | " + hours + ":" + minutes + ":" + seconds
+}
+
 // Adicionando os dados no array de transações
 const addToTransactionsArray = (transactionName, transactionAmount) => {
     transactions.push({
         id: generateID(),
         name: transactionName,
+        data: gererateData(),
         amount: Number(transactionAmount)
     })
 }
