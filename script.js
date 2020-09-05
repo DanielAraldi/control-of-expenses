@@ -79,6 +79,8 @@ updateLocalStorage = () => {
 // Criando IDs aleatórios
 const generateID = () => Math.round(Math.random() * 10000)
 
+const getTimeUnit = unit => unit < 10 ? '0' + unit : unit
+
 // Data de criação de transação
 const gererateData = () => {
     const data = new Date()
@@ -90,7 +92,8 @@ const gererateData = () => {
     const minutes = data.getMinutes()
     const seconds = data.getSeconds()
 
-    return day + "/" + (mouth + 1) + "/" + year + " | " + hours + ":" + minutes + ":" + seconds
+    return `${getTimeUnit(hours)}:${getTimeUnit(minutes)}:${getTimeUnit(seconds)}
+     | ${getTimeUnit(day)}/${getTimeUnit((mouth + 1))}/${year}`
 }
 
 // Adicionando os dados no array de transações
@@ -113,7 +116,7 @@ const handleFormSubmit = event => {
 
     const transactionName = inputTransactionName.value.trim()
     const transactionAmount = inputTransactionAmount.value.trim()
-    const isSomeInputEmpty = transactionName === '' || transactionAmount === ''
+    const isSomeInputEmpty = transactionName === '' || transactionAmount === '' || transactionAmount == 0
 
     // Se os inputs não forem preenchidos
     if (isSomeInputEmpty) {
